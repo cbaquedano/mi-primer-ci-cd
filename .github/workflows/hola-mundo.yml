@@ -1,30 +1,19 @@
-name: Mi Primer CI/CD
+name: Variables DevOps
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+on: [push, workflow_dispatch]
+
+env:
+  PROYECTO: "Mi App DevOps"
+  AMBIENTE: "Desarrollo"
 
 jobs:
-  saludar:
+  mostrar:
     runs-on: ubuntu-latest
+    env:
+      RESPONSABLE: "Estudiante DevOps"
     steps:
-    - name: 📥 Descargar código
-      uses: actions/checkout@v4
-
-    - name: 👋 ¡Hola mundo DevOps!
+    - name: Mostrar info
       run: |
-        echo "¡Hola DevOps con Roxs! 🚀"
-        date
-        uname -a
-
-    - name: 🧪 Test Matemático
-      run: |
-        if [ $((2+2)) -eq 4 ]; then
-          echo "✅ Todo OK"
-        else
-          echo "❌ Algo falló"
-          exit 1
-        fi
+        echo "Proyecto: $PROYECTO"
+        echo "Ambiente: $AMBIENTE"
+        echo "Responsable: $RESPONSABLE"
