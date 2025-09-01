@@ -1,19 +1,14 @@
-name: Variables DevOps
+name: Rama Detectada
 
-on: [push, workflow_dispatch]
-
-env:
-  PROYECTO: "Mi App DevOps"
-  AMBIENTE: "Desarrollo"
+on:
+  push:
+    branches: [main, develop, feature/*]
+  workflow_dispatch:
 
 jobs:
-  mostrar:
+  detectar:
     runs-on: ubuntu-latest
-    env:
-      RESPONSABLE: "Estudiante DevOps"
     steps:
-    - name: Mostrar info
+    - name: Detectar rama
       run: |
-        echo "Proyecto: $PROYECTO"
-        echo "Ambiente: $AMBIENTE"
-        echo "Responsable: $RESPONSABLE"
+        echo "Rama actual: ${{ github.ref_name }}"
